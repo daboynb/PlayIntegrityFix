@@ -8,7 +8,7 @@ If you wanna help me
 https://github.com/daboynb/PlayIntegrityNEXT/releases/tag/Release
 
 # Why this fork?
-It downloads the fp automatically.
+It downloads the fingerprint automatically.
 
 # Instructions
 
@@ -18,10 +18,10 @@ It downloads the fp automatically.
 https://play.google.com/store/apps/details?id=com.aefyr.sai )
 4) Flash the zip and reboot
 
-When the FP will be banned, you will only need to open the app and then check for Play Integrity Attestation. The module will download the new PIF.json. 
+When the fingerprint will be banned, you will only need to open the app and then check for Play Integrity Attestation. The module will download the new playIntegrityFix.json. 
 
 # ATTENTION
-Sometimes, you may need to double-check for Play Integrity Attestation if the new PIF.json was just downloaded.
+Sometimes, you may need to double-check for Play Integrity Attestation if the new playIntegrityFix.json was just downloaded.
 It can happen if you use apps like Yasnac. Currently, I have not encountered this bug using the Google Play developer check.
 
 
