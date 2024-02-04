@@ -1,14 +1,14 @@
-If you wanna help me
+If you want to lend a hand,
 
 <a href="https://www.buymeacoffee.com/daboynb" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
 
-# What happened to Play integrity fix NEXT?
+# What's up with the Play Integrity Fix NEXT?
 
-Chiteroman is keeping his module up to date with a lot of new things and improvements! So, I decided to create a module that downloads a working fingerprint instead of making a fork of his versions every time. This module is called 'playcurl,' and you simply need to install it alongside the official PIF.
+Chiteroman is diligently updating his module with loads of new features and enhancements! Therefore, I've come up with a module called 'playcurl.' Instead of creating a fork of his versions every time, this module downloads a functional fingerprint.
 
-The mechanism is the same; it will automatically pull a working fingerprint when the previous one gets banned.
+The process remains the same; it automatically fetches a working fingerprint when the previous one gets banned.
 
-[Instructions here](https://github.com/daboynb/PlayIntegrityNEXT/tree/main/Fp_Downloader.apk%20to%20use%20with%20play%20integrity%20by%20chiteroman)
+[Find the installation instructions here](https://github.com/daboynb/PlayIntegrityNEXT/tree/main/Fp_Downloader.apk%20to%20use%20with%20play%20integrity%20by%20chiteroman)
 
 # support
 Telegram :
