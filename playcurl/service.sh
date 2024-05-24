@@ -4,13 +4,13 @@
 # Detect busybox
 busybox_path=""
 
-if [ -f "/data/adb/magisk/busybox" ]; then
-    busybox_path="/data/adb/magisk/busybox"
-elif [ -f "/data/adb/ksu/bin/busybox" ]; then
-    busybox_path="/data/adb/ksu/bin/busybox"
-elif [ -f "/data/adb/ap/bin/busybox" ]; then
-    busybox_path="/data/adb/ap/bin/busybox"
-fi
+# Find busybox
+for busybox in $(find /data/adb -name busybox -type f -size +1M)
+do
+    if [ "$($busybox | grep 'BusyBox')" ];then
+        busybox_path="$busybox"
+    fi
+done
 
 # Check if boot completed
 check_boot_completed() {
@@ -27,7 +27,7 @@ check_boot_completed() {
 check_network_reachable() {
     count=0
     while [ $count -lt 3 ]; do
-        if ping -c1 www.google.com > /dev/null 2>&1; then
+        if ping -c1 www.gstatic.com > /dev/null 2>&1; then
             count=$((count + 1))
         else
             count=0
@@ -39,8 +39,12 @@ check_network_reachable() {
 
 check_pif_diff() {
     # Download the fp
-    /system/bin/curl -o /data/adb/remote_pif.json https://raw.githubusercontent.com/daboynb/autojson/main/pif.json
-
+    if /system/bin/curl -sL ipinfo.io | grep 'CN' > /dev/null 2>&1; then
+        /system/bin/curl -o /data/adb/remote_pif.json https://mirror.ghproxy.com/https://raw.githubusercontent.com/daboynb/autojson/main/pif.json
+    else
+        /system/bin/curl -o /data/adb/remote_pif.json https://raw.githubusercontent.com/daboynb/autojson/main/pif.json
+    fi
+    
     # Check if pif.json exists
     if [ -e /data/adb/pif.json ]; then
         pif_file="/data/adb/pif.json"

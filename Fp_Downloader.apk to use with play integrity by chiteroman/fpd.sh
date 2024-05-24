@@ -6,13 +6,14 @@
 # Detect busybox
 busybox_path=""
 
-if [ -f "/data/adb/magisk/busybox" ]; then
-    busybox_path="/data/adb/magisk/busybox"
-elif [ -f "/data/adb/ksu/bin/busybox" ]; then
-    busybox_path="/data/adb/ksu/bin/busybox"
-elif [ -f "/data/adb/ap/bin/busybox" ]; then
-    busybox_path="/data/adb/ap/bin/busybox"
-fi
+# Find busybox
+for busybox in $(find /data/adb -name busybox -type f -size +1M)
+do
+    if [ "$($busybox | grep 'BusyBox')" ];then
+        busybox_path="$busybox"
+        break
+    fi
+done
 
 # Disable other modules for testing incompatibility
 list="$("$busybox_path" find /data/adb/modules/* -prune -type d)"

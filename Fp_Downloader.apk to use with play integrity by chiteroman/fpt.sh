@@ -8,13 +8,14 @@ sleep 04
 # Detect busybox
 busybox_path=""
 
-if [ -f "/data/adb/magisk/busybox" ]; then
-    busybox_path="/data/adb/magisk/busybox"
-elif [ -f "/data/adb/ksu/bin/busybox" ]; then
-    busybox_path="/data/adb/ksu/bin/busybox"
-elif [ -f "/data/adb/ap/bin/busybox" ]; then
-    busybox_path="/data/adb/ap/bin/busybox"
-fi
+# Find busybox
+for busybox in $(find /data/adb -name busybox -type f -size +1M)
+do
+    if [ "$($busybox | grep 'BusyBox')" ];then
+        busybox_path="$busybox"
+        break
+    fi
+done
 
 # Function to kill gms processes
 cls_gms(){
@@ -33,8 +34,12 @@ main() {
     # Variables for the apk
     spic="com.henrikherzig.playintegritychecker"
     local_apk_path="/data/local/tmp/spic-v1.4.0.apk"
-    apk_url="https://github.com/herzhenr/spic-android/releases/download/v1.4.0/spic-v1.4.0.apk"
-
+    
+    if /system/bin/curl -sL ipinfo.io | grep 'CN' > /dev/null 2>&1; then
+        apk_url="https://mirror.ghproxy.com/https://github.com/herzhenr/spic-android/releases/download/v1.4.0/spic-v1.4.0.apk"
+    else
+        apk_url="https://github.com/herzhenr/spic-android/releases/download/v1.4.0/spic-v1.4.0.apk"
+    fi
     # Check if SPIC app is already installed
     if pm list packages | "$busybox_path" grep "$spic" >/dev/null 2>&1; then
         echo ""

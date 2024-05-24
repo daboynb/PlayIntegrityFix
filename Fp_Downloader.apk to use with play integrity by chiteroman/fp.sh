@@ -3,13 +3,14 @@
 # Detect busybox
 busybox_path=""
 
-if [ -f "/data/adb/magisk/busybox" ]; then
-    busybox_path="/data/adb/magisk/busybox"
-elif [ -f "/data/adb/ksu/bin/busybox" ]; then
-    busybox_path="/data/adb/ksu/bin/busybox"
-elif [ -f "/data/adb/ap/bin/busybox" ]; then
-    busybox_path="/data/adb/ap/bin/busybox"
-fi
+# Find busybox
+for busybox in $(find /data/adb -name busybox -type f -size +1M)
+do
+    if [ "$($busybox | grep 'BusyBox')" ];then
+        busybox_path="$busybox"
+        break
+    fi
+done
 
 # Check for kdrag0n/safetynet-fix
 if [ -d "/data/adb/modules/safetynet-fix" ]; then
@@ -87,10 +88,17 @@ echo
 
 # Download pif.json
 echo "[+] Downloading the pif.json"
-if [ -f /data/adb/modules/playintegrityfix/migrate.sh ]; then
-    /system/bin/curl -L "https://raw.githubusercontent.com/daboynb/autojson/main/pif.json" -o /data/adb/modules/playintegrityfix/custom.pif.json > /dev/null 2>&1 || /system/bin/curl -L "https://raw.githubusercontent.com/daboynb/autojson/main/pif.json" -o /data/adb/modules/playintegrityfix/custom.pif.json
+
+if /system/bin/curl -sL ipinfo.io | grep 'CN' > /dev/null 2>&1; then
+    proxy="https://mirror.ghproxy.com/"
 else
-    /system/bin/curl -L "https://raw.githubusercontent.com/daboynb/autojson/main/pif.json" -o /data/adb/pif.json > /dev/null 2>&1 || /system/bin/curl -L "https://raw.githubusercontent.com/daboynb/autojson/main/pif.json" -o /data/adb/pif.json
+    proxy=""
+fi
+
+if [ -f /data/adb/modules/playintegrityfix/migrate.sh ]; then
+    /system/bin/curl -L "${proxy}https://raw.githubusercontent.com/daboynb/autojson/main/pif.json" -o /data/adb/modules/playintegrityfix/custom.pif.json > /dev/null 2>&1 || /system/bin/curl -L "${proxy}https://raw.githubusercontent.com/daboynb/autojson/main/pif.json" -o /data/adb/modules/playintegrityfix/custom.pif.json
+else
+    /system/bin/curl -L "${proxy}https://raw.githubusercontent.com/daboynb/autojson/main/pif.json" -o /data/adb/pif.json > /dev/null 2>&1 || /system/bin/curl -L "${proxy}https://raw.githubusercontent.com/daboynb/autojson/main/pif.json" -o /data/adb/pif.json
 fi
 echo 
 

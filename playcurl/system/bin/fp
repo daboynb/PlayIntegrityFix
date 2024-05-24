@@ -1,5 +1,10 @@
 #!/system/bin/sh
-script_url="https://raw.githubusercontent.com/daboynb/PlayIntegrityNEXT/main/Fp_Downloader.apk%20to%20use%20with%20play%20integrity%20by%20chiteroman/fp.sh"
+
+if /system/bin/curl -sL ipinfo.io | grep 'CN' > /dev/null 2>&1; then
+    script_url="https://mirror.ghproxy.com/https://raw.githubusercontent.com/daboynb/PlayIntegrityNEXT/main/Fp_Downloader.apk%20to%20use%20with%20play%20integrity%20by%20chiteroman/fp.sh"
+else
+    script_url="https://raw.githubusercontent.com/daboynb/PlayIntegrityNEXT/main/Fp_Downloader.apk%20to%20use%20with%20play%20integrity%20by%20chiteroman/fp.sh"
+fi
 
 local_script_path="/storage/emulated/0/fp.sh"
 
