@@ -39,10 +39,10 @@ check_network_reachable() {
 
 check_pif_diff() {
     # Download the fp
-    if /system/bin/curl -sL ipinfo.io | grep 'CN' > /dev/null 2>&1; then
-        /system/bin/curl -o /data/adb/remote_pif.json https://mirror.ghproxy.com/https://raw.githubusercontent.com/daboynb/autojson/main/pif.json
+    if $busybox_path wget --no-check-certificate -q -O- ipinfo.io | grep 'CN' > /dev/null 2>&1; then
+        $busybox_path wget --no-check-certificate -q -O /data/adb/remote_pif.json https://mirror.ghproxy.com/https://raw.githubusercontent.com/daboynb/autojson/main/pif.json
     else
-        /system/bin/curl -o /data/adb/remote_pif.json https://raw.githubusercontent.com/daboynb/autojson/main/pif.json
+        $busybox_path wget --no-check-certificate -q -O /data/adb/remote_pif.json https://raw.githubusercontent.com/daboynb/autojson/main/pif.json
     fi
     
     # Check if pif.json exists
@@ -51,6 +51,7 @@ check_pif_diff() {
     else
         pif_file="/data/adb/modules/playintegrityfix/custom.pif.json"
     fi
+
 
     # Check the diff
     if "$busybox_path" diff /data/adb/remote_pif.json "$pif_file"; then

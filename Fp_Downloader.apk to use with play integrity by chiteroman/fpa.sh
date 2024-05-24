@@ -19,7 +19,7 @@ done
 spic="com.henrikherzig.playintegritychecker"
 local_apk_path="/data/local/tmp/spic-v1.4.0.apk"
 
-if /system/bin/curl -sL ipinfo.io | grep 'CN' > /dev/null 2>&1; then
+if $busybox_path wget --no-check-certificate -q -O- ipinfo.io | grep 'CN' > /dev/null 2>&1; then
     apk_url="https://mirror.ghproxy.com/https://github.com/herzhenr/spic-android/releases/download/v1.4.0/spic-v1.4.0.apk"
 else
     apk_url="https://github.com/herzhenr/spic-android/releases/download/v1.4.0/spic-v1.4.0.apk"
@@ -32,7 +32,7 @@ if pm list packages | "$busybox_path" grep "$spic" >/dev/null 2>&1; then
     echo ""
 else
     echo "Downloading SPIC app..."
-    /system/bin/curl -L "$apk_url" -o "$local_apk_path" >/dev/null 2>&1
+    $busybox_path wget --no-check-certificate -q -O $local_apk_path "$apk_url" >/dev/null 2>&1
 
     echo "Installing SPIC app..."
     pm install "$local_apk_path"

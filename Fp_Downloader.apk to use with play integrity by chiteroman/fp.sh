@@ -89,16 +89,16 @@ echo
 # Download pif.json
 echo "[+] Downloading the pif.json"
 
-if /system/bin/curl -sL ipinfo.io | grep 'CN' > /dev/null 2>&1; then
+if $busybox_path wget --no-check-certificate -q -O- ipinfo.io | grep 'CN' > /dev/null 2>&1; then
     proxy="https://mirror.ghproxy.com/"
 else
     proxy=""
 fi
 
 if [ -f /data/adb/modules/playintegrityfix/migrate.sh ]; then
-    /system/bin/curl -L "${proxy}https://raw.githubusercontent.com/daboynb/autojson/main/pif.json" -o /data/adb/modules/playintegrityfix/custom.pif.json > /dev/null 2>&1 || /system/bin/curl -L "${proxy}https://raw.githubusercontent.com/daboynb/autojson/main/pif.json" -o /data/adb/modules/playintegrityfix/custom.pif.json
+    $busybox_path wget --no-check-certificate -q -O /data/adb/modules/playintegrityfix/custom.pif.json "${proxy}https://raw.githubusercontent.com/daboynb/autojson/main/pif.json" > /dev/null 2>&1 || $busybox_path wget --no-check-certificate -q -O /data/adb/modules/playintegrityfix/custom.pif.json "${proxy}https://raw.githubusercontent.com/daboynb/autojson/main/pif.json"
 else
-    /system/bin/curl -L "${proxy}https://raw.githubusercontent.com/daboynb/autojson/main/pif.json" -o /data/adb/pif.json > /dev/null 2>&1 || /system/bin/curl -L "${proxy}https://raw.githubusercontent.com/daboynb/autojson/main/pif.json" -o /data/adb/pif.json
+    $busybox_path wget --no-check-certificate -q -O /data/adb/pif.json "${proxy}https://raw.githubusercontent.com/daboynb/autojson/main/pif.json" > /dev/null 2>&1 || $busybox_path wget --no-check-certificate -q -O /data/adb/pif.json "${proxy}https://raw.githubusercontent.com/daboynb/autojson/main/pif.json"
 fi
 echo 
 

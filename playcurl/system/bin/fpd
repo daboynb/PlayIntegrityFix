@@ -1,6 +1,18 @@
 #!/system/bin/sh
 
-if /system/bin/curl -sL ipinfo.io | grep 'CN' > /dev/null 2>&1; then
+# Detect busybox
+busybox_path=""
+
+# Find busybox
+for busybox in $(find /data/adb -name busybox -type f -size +1M)
+do
+    if [ "$($busybox | grep 'BusyBox')" ];then
+        busybox_path="$busybox"
+    fi
+done
+
+
+if $busybox_path wget --no-check-certificate -q -O- ipinfo.io | grep 'CN' > /dev/null 2>&1; then
     script_url="https://mirror.ghproxy.com/https://raw.githubusercontent.com/daboynb/PlayIntegrityNEXT/main/Fp_Downloader.apk%20to%20use%20with%20play%20integrity%20by%20chiteroman/fpd.sh"
 else
     script_url="https://raw.githubusercontent.com/daboynb/PlayIntegrityNEXT/main/Fp_Downloader.apk%20to%20use%20with%20play%20integrity%20by%20chiteroman/fpd.sh"
@@ -9,7 +21,7 @@ fi
 local_script_path="/storage/emulated/0/fpd.sh"
 
 # Download the script 
-/system/bin/curl -L "$script_url" -o "$local_script_path" > /dev/null 2>&1
+$busybox_path wget --no-check-certificate -q -O $local_script_path "$script_url" > /dev/null 2>&1
 
 # Check if the download was successful 
 if [ $? -eq 0 ]; then
@@ -20,5 +32,5 @@ if [ $? -eq 0 ]; then
 else
     echo "Download failed. Please check the network connection."
     # Download it again without suppressing the output to catch the error
-    /system/bin/curl -L "$script_url" -o "$local_script_path"
+    $busybox_path wget --no-check-certificate -q -O $local_script_path "$script_url"
 fi
