@@ -25,16 +25,18 @@ check_boot_completed() {
 
 # Check if internet is working
 check_network_reachable() {
-    count=0
-    while [ $count -lt 3 ]; do
+    failure_count=0
+
+    while [ $failure_count -lt 3 ]; do
         if ping -c1 www.gstatic.com > /dev/null 2>&1; then
-            count=$((count + 1))
+            return 0
         else
-            count=0
+            failure_count=$((failure_count + 1))
         fi
         sleep 1
     done
-    return 0
+
+    return 1
 }
 
 check_pif_diff() {
