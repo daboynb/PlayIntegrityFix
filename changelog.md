@@ -1,1 +1,1 @@
-V 10.6 : Revert to curl
+V 10.6 : Revert to curl since busybox doesn't work for all.
