@@ -1,0 +1,1 @@
+V 10.6 : Revert to curl
