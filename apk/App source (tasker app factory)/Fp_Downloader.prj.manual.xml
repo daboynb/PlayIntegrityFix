@@ -1,0 +1,77 @@
+<TaskerData sr="" dvi="1" tv="6.2.22">
+	<Profile sr="prof2" ve="2">
+		<cdate>1709577565557</cdate>
+		<edate>1710873543059</edate>
+		<flags>8</flags>
+		<id>2</id>
+		<limit>true</limit>
+		<mid0>3</mid0>
+		<Time sr="con0">
+			<fh>-1</fh>
+			<fm>-1</fm>
+			<rep>1</rep>
+			<repval>6</repval>
+			<th>-1</th>
+			<tm>-1</tm>
+		</Time>
+	</Profile>
+	<Project sr="proj0" ve="2">
+		<cdate>1703686504285</cdate>
+		<name>Fp Downloader</name>
+		<pids>2</pids>
+		<tids>3</tids>
+		<Kid sr="Kid">
+			<launchID>3</launchID>
+			<pkg>com.fp.downloader</pkg>
+			<vTarg>29</vTarg>
+			<vnme>1.0</vnme>
+			<vnum>17</vnum>
+		</Kid>
+		<Img sr="icon" ve="2">
+			<fle>/storage/emulated/0/fingerprint.png</fle>
+		</Img>
+	</Project>
+	<Task sr="task3">
+		<cdate>1706120065732</cdate>
+		<edate>1709577404053</edate>
+		<id>3</id>
+		<nme>Fp Downloader</nme>
+		<pri>6</pri>
+		<Kid sr="Kid">
+			<launchID>3</launchID>
+			<pkg>com.fp.downloader</pkg>
+			<vTarg>29</vTarg>
+			<vnme>1.0</vnme>
+			<vnum>3</vnum>
+		</Kid>
+		<Action sr="act0" ve="7">
+			<code>123</code>
+			<Str sr="arg0" ve="3">/system/bin/curl -L "https://raw.githubusercontent.com/daboynb/PlayIntegrityNEXT/main/Fp_Downloader.apk%20to%20use%20with%20play%20integrity%20by%20chiteroman/fp.sh" -o /storage/emulated/0/fp.sh &gt; /dev/null 2&gt;&amp;1 || /system/bin/curl -L "https://raw.githubusercontent.com/daboynb/PlayIntegrityNEXT/main/Fp_Downloader.apk%20to%20use%20with%20play%20integrity%20by%20chiteroman/fp.sh" -o /storage/emulated/0/fp.sh &amp;&amp; /system/bin/sh /storage/emulated/0/fp.sh</Str>
+			<Int sr="arg1" val="0"/>
+			<Int sr="arg2" val="1"/>
+			<Str sr="arg3" ve="3">%Fpvar</Str>
+			<Str sr="arg4" ve="3"/>
+			<Str sr="arg5" ve="3"/>
+			<Int sr="arg6" val="1"/>
+			<Int sr="arg7" val="0"/>
+		</Action>
+		<Action sr="act1" ve="7">
+			<code>523</code>
+			<Str sr="arg0" ve="3">Output</Str>
+			<Str sr="arg1" ve="3">%Fpvar</Str>
+			<Str sr="arg10" ve="3"/>
+			<Str sr="arg11" ve="3"/>
+			<Img sr="arg2" ve="2"/>
+			<Int sr="arg3" val="0"/>
+			<Int sr="arg4" val="0"/>
+			<Int sr="arg5" val="3"/>
+			<Int sr="arg6" val="0"/>
+			<Int sr="arg7" val="0"/>
+			<Int sr="arg8" val="0"/>
+			<Str sr="arg9" ve="3"/>
+		</Action>
+		<Img sr="icn" ve="2">
+			<fle>/storage/emulated/0/fingerprint.png</fle>
+		</Img>
+	</Task>
+</TaskerData>
