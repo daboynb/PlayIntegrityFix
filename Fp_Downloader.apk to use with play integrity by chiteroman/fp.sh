@@ -106,7 +106,8 @@ echo
 
 # Clear the cache of all apps
 echo "[+] Clearing cache"
-pm trim-caches 999G > /dev/null 2>&1
+# Execute su twice workaround https://www.reddit.com/r/LineageOS/comments/8txt08/comment/e7eak5g/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
+su -c "su -c 'pm trim-caches 999G' > /dev/null 2>&1"
 echo
 
 # Check if the pif is present
