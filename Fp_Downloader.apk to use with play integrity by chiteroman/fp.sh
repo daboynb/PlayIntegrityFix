@@ -20,7 +20,7 @@ fi
 
 # Check for MagiskHidePropsConfig
 if [ -d "/data/adb/modules/MagiskHidePropsConf" ]; then
-    echo "The MagiskHidePropsConfig module is incompatible with pif, remove it and reboot the phone to proceed"
+    echo "The MagiskHidePropsConfig module may cause issues with pif, remove it and reboot the phone to proceed"
     rm "$0"
     exit 1
 fi

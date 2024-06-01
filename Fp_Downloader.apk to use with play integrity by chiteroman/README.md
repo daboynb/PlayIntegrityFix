@@ -23,7 +23,7 @@ If you don't want the auto-update feature, you can simply delete the file "/data
         - fpa -> Runs the 'fp' command and then checks for device integrity; if not met, it runs the 'fpd' command.
         - fpt -> Checks multiple JSON files.
 
-# Instructions for fpt
+# Instructions for fpt ( THIS IS A SCRIPT FOR TESTING THE FPS YOU FOUND! )
 
         - Put all your JSON files into /storage/emulated/0/pif_to_test.
         - Open Termux.
