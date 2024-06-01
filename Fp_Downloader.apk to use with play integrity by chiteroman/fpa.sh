@@ -1,8 +1,11 @@
 #!/system/bin/sh
 
+#################################################### Download the fp
 # Run the fp command and then check with SPIC
 /system/bin/fp
+####################################################
 
+#################################################### Declare vars
 # Detect busybox
 busybox_path=""
 
@@ -18,7 +21,9 @@ fi
 spic="com.henrikherzig.playintegritychecker"
 local_apk_path="/data/local/tmp/spic-v1.4.0.apk"
 apk_url="https://github.com/herzhenr/spic-android/releases/download/v1.4.0/spic-v1.4.0.apk"
+#################################################### 
 
+#################################################### Check for pre-requisites
 # Check if SPIC app is already installed
 if pm list packages | "$busybox_path" grep "$spic" >/dev/null 2>&1; then
     echo ""
@@ -32,7 +37,9 @@ else
     pm install "$local_apk_path"
     rm "$local_apk_path" >/dev/null 2>&1
 fi
+####################################################
 
+####################################################
 # Kill the spic app
 killall $spic >/dev/null 2>&1
 
@@ -102,3 +109,4 @@ if [ "$meets" = "NO_INTEGRITY" ] || [ "$meets" = "MEETS_BASIC_INTEGRITY" ]; then
     rm $resultlog >/dev/null 2>&1
     /system/bin/fpd
 fi
+###################################################################

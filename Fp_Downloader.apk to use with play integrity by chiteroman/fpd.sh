@@ -1,8 +1,11 @@
 #!/system/bin/sh
 
+################################################################### Download the fp
 # Run the fp command and then disable other modules 
 /system/bin/fp
+###################################################################
 
+################################################################### Declare vars
 # Detect busybox
 busybox_path=""
 
@@ -13,7 +16,9 @@ elif [ -f "/data/adb/ksu/bin/busybox" ]; then
 elif [ -f "/data/adb/ap/bin/busybox" ]; then
     busybox_path="/data/adb/ap/bin/busybox"
 fi
+###################################################################
 
+###################################################################
 # Disable other modules for testing incompatibility
 list="$("$busybox_path" find /data/adb/modules/* -prune -type d)"
 for module in $list; do
@@ -30,3 +35,4 @@ rm "$0" > /dev/null 2>/dev/null
 reboot >/dev/null 2>&1
 
 echo "The phone should have rebooted by itself. If you are reading this, reboot manually!"
+###################################################################

@@ -1,5 +1,6 @@
 #!/system/bin/sh
 
+################################################################### Declare vars
 # Detect busybox
 busybox_path=""
 
@@ -10,7 +11,9 @@ elif [ -f "/data/adb/ksu/bin/busybox" ]; then
 elif [ -f "/data/adb/ap/bin/busybox" ]; then
     busybox_path="/data/adb/ap/bin/busybox"
 fi
+###################################################################
 
+################################################################### Check for pre-requisites
 # Check for kdrag0n/safetynet-fix
 if [ -d "/data/adb/modules/safetynet-fix" ]; then
     echo "The safetynet-fix module is incompatible with pif, remove it and reboot the phone to proceed"
@@ -84,7 +87,9 @@ for apk in "${apk_names[@]}"; do
     fi
 done
 echo
+###################################################################
 
+###################################################################
 # Download pif.json
 echo "[+] Downloading the pif.json"
 if [ -f /data/adb/modules/playintegrityfix/migrate.sh ]; then
@@ -136,3 +141,4 @@ echo ""
 
 # Auto delete the script
 rm "$0" > /dev/null 2>/dev/null
+###################################################################
