@@ -133,6 +133,11 @@ for keyword in "${banned_names[@]}"; do
     fi
 done
 
+get_keys=$(getprop ro.build.tags)
+if [ "$get_keys" != "release-keys" ]; then
+    echo "The rom does not contain release keys!"
+fi
+
 echo ""
 echo "Remember, wallet can take up to 24 hrs to work again!"
 echo ""
