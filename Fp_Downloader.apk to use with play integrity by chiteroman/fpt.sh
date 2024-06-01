@@ -53,7 +53,7 @@ main() {
     TEST_DIR="/storage/emulated/0"
     INPUT_DIR="$TEST_DIR/pif_to_test"
     OUTPUT_DIR="$TEST_DIR/pif_ok"
-
+    
     # Iterate over JSON files
     for json_file in "$INPUT_DIR"/*.json; do
         xml="$TEST_DIR/testresult.xml"
@@ -129,8 +129,21 @@ main() {
             rm "$xml" 
             rm "$json_file"
         fi
+
+        # Check if all the JSON files have been processed
+        if [ ! "$(ls -A $INPUT_DIR/*.json 2>/dev/null)" ]; then
+            echo "All JSON files in $INPUT_DIR have been processed. Exiting."
+            exit 1
+        fi
+
     done
 }
+
+# Check if at least one JSON files exist
+if [ ! "$(ls -A $INPUT_DIR/*.json 2>/dev/null)" ]; then
+    echo "Error: No JSON files found in $INPUT_DIR"
+    exit 1
+fi
 
 # Execute main function
 main
