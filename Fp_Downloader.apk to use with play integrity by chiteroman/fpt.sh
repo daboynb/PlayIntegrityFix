@@ -1,7 +1,7 @@
 #!/system/bin/sh
 
 echo ""
-echo "THIS IS A SCRIPT FOR TESTING YOUR FOUND FPS!"
+echo "THIS IS A SCRIPT FOR TESTING THE FPS YOU FOUND!"
 echo ""
 echo "Put all your JSON files into /storage/emulated/0/pif_to_test."
 echo ""
