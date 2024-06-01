@@ -133,7 +133,7 @@ for keyword in "${banned_names[@]}"; do
     fi
 done
 
-# Check the outpur of ro.build.tags
+# Check the output of ro.build.tags
 get_keys=$(getprop ro.build.tags)
 if [ "$get_keys" != "release-keys" ]; then
     echo "The rom does not contain release keys!"
