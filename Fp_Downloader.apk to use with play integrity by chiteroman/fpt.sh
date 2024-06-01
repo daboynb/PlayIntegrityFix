@@ -1,7 +1,12 @@
 #!/system/bin/sh
 
+echo ""
+echo "THIS IS A SCRIPT FOR TESTING YOUR FOUND FPS!"
+echo ""
 echo "Put all your JSON files into /storage/emulated/0/pif_to_test."
+echo ""
 echo "The good JSON files will be moved to /storage/emulated/0/pif_ok."
+echo ""
 
 sleep 04
 
