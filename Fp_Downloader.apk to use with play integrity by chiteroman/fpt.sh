@@ -138,6 +138,7 @@ main() {
         # Check if all the JSON files have been processed
         if [ ! "$(ls -A $INPUT_DIR/*.json 2>/dev/null)" ]; then
             echo "All JSON files in /storage/emulated/0/pif_to_test have been processed. Exiting."
+            echo ""
             exit 1
         fi
 
@@ -147,6 +148,7 @@ main() {
 # Check if at least one JSON files exist
 if [ ! "$(ls -A /storage/emulated/0/pif_to_test/*.json 2>/dev/null)" ]; then
     echo "Error: No JSON files found in /storage/emulated/0/pif_to_test"
+    echo ""
     exit 1
 fi
 
