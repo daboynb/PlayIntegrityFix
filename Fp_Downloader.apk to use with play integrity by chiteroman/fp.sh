@@ -136,11 +136,13 @@ done
 # Check the output of ro.build.tags
 get_keys=$(getprop ro.build.tags)
 if [ "$get_keys" != "release-keys" ]; then
-    echo "The rom does not contain release keys!"
+    echo ""
+    echo "[-] The rom does not contain release keys!"
     echo ""
     echo "Your keys are : $get_keys"
+else 
     echo ""
-
+    echo "[+] Your keys are release-keys"
 fi
 
 echo ""
