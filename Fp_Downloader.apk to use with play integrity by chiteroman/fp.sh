@@ -140,7 +140,6 @@ if echo $get_keys | "$busybox_path" grep -iq release-keys; then
     echo "[+] Your keys are release-keys" 
 fi
 
-get_keys=$("$busybox_path" unzip -l /system/etc/security/otacerts.zip)
 if echo $get_keys | "$busybox_path" grep -iq test-keys; then
     echo ""
     echo "[-] Your keys are test-keys"
