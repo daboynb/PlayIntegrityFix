@@ -135,12 +135,12 @@ done
 
 # Check the keys of /system/etc/security/otacerts.zip
 get_keys=$("$busybox_path" less /system/etc/security/otacerts.zip > /dev/null)
-if echo $get_keys | "$busybox_path" grep -q release-keys; then
+if echo $get_keys | "$busybox_path" grep -q release; then
     echo ""
     echo "[+] Your keys are release" 
 fi
 
-if echo $get_keys | "$busybox_path" grep -q test-keys; then
+if echo $get_keys | "$busybox_path" grep -q test; then
     echo ""
     echo "[-] Your keys are test"
 fi
