@@ -134,13 +134,14 @@ for keyword in "${banned_names[@]}"; do
 done
 
 # Check the keys of /system/etc/security/otacerts.zip
-get_keys=$("$busybox_path" less /system/etc/security/otacerts.zip > /dev/null)
-if echo $get_keys | "$busybox_path" grep -q release; then
+get_keys=$("$busybox_path" unzip -l /system/etc/security/otacerts.zip)
+
+if echo "$get_keys" | "$busybox_path" grep -q release; then
     echo ""
     echo "[+] Your keys are release" 
 fi
 
-if echo $get_keys | "$busybox_path" grep -q test; then
+if echo "$get_keys" | "$busybox_path" grep -q test; then
     echo ""
     echo "[-] Your keys are test"
 fi
