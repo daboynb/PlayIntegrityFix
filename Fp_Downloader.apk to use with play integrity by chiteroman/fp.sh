@@ -133,16 +133,17 @@ for keyword in "${banned_names[@]}"; do
     fi
 done
 
-# Check the output of ro.build.tags
-get_keys=$(getprop ro.build.tags)
-if [ "$get_keys" != "release-keys" ]; then
+# Check the keys of /system/etc/security/otacerts.zip
+get_keys=$("$busybox_path" unzip -l /system/etc/security/otacerts.zip)
+if echo $get_keys | "$busybox_path" grep -iq release-keys; then
     echo ""
-    echo "[-] The rom does not contain release keys!"
+    echo "[+] Your keys are release-keys" 
+fi
+
+get_keys=$("$busybox_path" unzip -l /system/etc/security/otacerts.zip)
+if echo $get_keys | "$busybox_path" grep -iq test-keys; then
     echo ""
-    echo "Your keys are : $get_keys"
-else 
-    echo ""
-    echo "[+] Your keys are release-keys"
+    echo "[-] Your keys are test-keys"
 fi
 
 echo ""
