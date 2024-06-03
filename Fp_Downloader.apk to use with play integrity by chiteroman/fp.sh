@@ -138,18 +138,29 @@ get_keys=$("$busybox_path" unzip -l /system/etc/security/otacerts.zip)
 
 if echo "$get_keys" | "$busybox_path" grep -q release; then
     echo ""
-    echo "[+] Your keys are release" 
+    echo "[+] Your keys are release-keys" 
 fi
 
 if echo "$get_keys" | "$busybox_path" grep -q test; then
     echo ""
-    echo "[-] Your keys are test"
+    echo "[-] Your keys are test-keys"
+    echo "You won't be able to pass device integrity"
+    echo "You need to use a signed rom"
+    echo "Ask your rom maintainer to do that"
 fi
 
 echo ""
-echo "Remember, wallet can take up to 24 hrs to work again!"
+echo "Remember, the wallet can take up to 24 hours to work again!"
 echo ""
-echo "If you receive the device is not certified message on the Play Store and you are passing device integrity, go to Settings, then Apps, find the Play Store, and tap on Uninstall Updates."
+echo "If you receive the 'device is not certified' message on the Play Store and you are passing device integrity, go to Settings, then Apps, find the Play Store, and tap on Uninstall Updates."
+echo ""
+echo "Never clear Play Store data when using pif, or you'll end up with an 'Unable to connect' error."
+echo ""
+echo "Do not put anything on the denylist other than the necessary apps."
+echo ""
+echo "Avoid putting things like Google Services Framework or Play Services on it."
+echo ""
+echo "That can cause problems like not passing integrity."
 echo ""
 
 # Auto delete the script
