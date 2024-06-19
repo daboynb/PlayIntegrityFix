@@ -162,6 +162,10 @@ echo "Avoid putting things like Google Services Framework or Play Services on it
 echo ""
 echo "That can cause problems like not passing integrity."
 echo ""
+echo "If you are using the chiteroman's module and Strong still not passing, try changing the number"
+echo "of DEVICE_INITIAL_SDK_INT to something lower than 34 or leave it blank."
+echo "You can edit it by opening with a text editor /data/adb/pif.json, then kill gms and check" 
+echo ""
 
 # Auto delete the script
 rm "$0" > /dev/null 2>/dev/null
