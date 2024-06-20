@@ -37,6 +37,7 @@ else
     exit 1
 fi
 
+
 # Check for zygisk if the user is using ksu
 if [ "$busybox_path" = "/data/adb/ap/bin/busybox" ]; then
   if [ -d "/data/adb/modules/zygisksu" ]; then
@@ -98,6 +99,18 @@ else
     /system/bin/curl -L "https://raw.githubusercontent.com/daboynb/autojson/main/pif.json" -o /data/adb/pif.json > /dev/null 2>&1 || /system/bin/curl -L "https://raw.githubusercontent.com/daboynb/autojson/main/pif.json" -o /data/adb/pif.json
 fi
 echo 
+
+if [ -f "/data/adb/modules/playintegrityfix/module.prop" ]; then
+    if "$busybox_path" cat "/data/adb/modules/playintegrityfix/module.prop" | "$busybox_path" grep "STRONG"; then
+        rm /data/adb/pif.json
+        /system/bin/curl -L "https://raw.githubusercontent.com/daboynb/autojson/main/strong.json" -o /data/adb/pif.json > /dev/null 2>&1 || /system/bin/curl -L "https://raw.githubusercontent.com/daboynb/autojson/main/strong.json" -o /data/adb/pif.json
+        echo ""
+        echo "If you are using the chiteroman's module and Strong still isn't passing"
+        echo "try changing the number of DEVICE_INITIAL_SDK_INT to something lower than 34 or leave it blank." 
+        echo "You can edit it by opening /data/adb/pif.json with a text editor, then kill GMS and check."
+        echo ""
+    fi
+fi
 
 # Kill gms processes and wallet
 package_names=("com.google.android.gms" "com.google.android.gms.unstable" "com.google.android.apps.walletnfcrel")
@@ -162,10 +175,7 @@ echo "Avoid putting things like Google Services Framework or Play Services on it
 echo ""
 echo "That can cause problems like not passing integrity."
 echo ""
-#echo "If you are using the chiteroman's module and Strong still isn't passing"
-#echo "try changing the number of DEVICE_INITIAL_SDK_INT to something lower than 34 or leave it blank." 
-#echo "You can edit it by opening /data/adb/pif.json with a text editor, then kill GMS and check."
-#echo ""
+
 
 # Auto delete the script
 rm "$0" > /dev/null 2>/dev/null
