@@ -1,1 +1,1 @@
-V 10.6 : Revert to curl since busybox doesn't work for all.
+V 10.7 : Bug fix for recent changes in pif.json.

@@ -40,14 +40,13 @@ check_network_reachable() {
 }
 
 check_pif_diff() {
-    # Download the fp
-    /system/bin/curl -o /data/adb/remote_pif.json https://raw.githubusercontent.com/daboynb/autojson/main/pif.json
-
     # Check if pif.json exists
     if [ -e /data/adb/pif.json ]; then
         pif_file="/data/adb/pif.json"
+        /system/bin/curl -o /data/adb/remote_pif.json https://raw.githubusercontent.com/daboynb/autojson/main/chiteroman.json
     else
         pif_file="/data/adb/modules/playintegrityfix/custom.pif.json"
+        /system/bin/curl -o /data/adb/remote_pif.json https://raw.githubusercontent.com/daboynb/autojson/main/osmosis.json
     fi
 
     # Check the diff
