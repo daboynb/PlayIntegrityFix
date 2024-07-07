@@ -28,6 +28,13 @@ if [ -d "/data/adb/modules/MagiskHidePropsConf" ]; then
     exit 1
 fi
 
+# Check for FrameworkPatcherGo
+if [ -d "/data/adb/modules/FrameworkPatcherGo" ]; then
+    echo "The FrameworkPatcherGo module is incompatible with pif, remove it and reboot the phone to proceed"
+    rm "$0"
+    exit 1
+fi
+
 # Check for playintegrityfix
 if [ -d "/data/adb/modules/playintegrityfix" ]; then
     :
