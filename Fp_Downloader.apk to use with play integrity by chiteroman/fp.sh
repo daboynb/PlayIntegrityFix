@@ -153,8 +153,8 @@ if echo "$get_keys" | "$busybox_path" grep -q test; then
     echo "[-] Your keys are test-keys."
     echo "Normally, you won't be able to pass device integrity."
     echo "If you are using PIF by Chiteroman,"
-    echo "edit 'spoofSignature:false' to 'spoofSignature:true'"
-    echo "inside /data/adb/pif.json."
+    echo "edit 'SPOOF_PACKAGE_MANAGER:false' to 'SPOOF_PACKAGE_MANAGER:true'"
+    echo "inside /data/adb/pif.json and reboot"
 fi
 
 echo ""
