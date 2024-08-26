@@ -148,13 +148,13 @@ if echo "$get_keys" | "$busybox_path" grep -q release; then
     echo ""
     echo "[+] Your keys are release-keys" 
 fi
-
 if echo "$get_keys" | "$busybox_path" grep -q test; then
     echo ""
-    echo "[-] Your keys are test-keys"
-    echo "You won't be able to pass device integrity"
-    echo "You need to use a signed rom"
-    echo "Ask your rom maintainer to do that"
+    echo "[-] Your keys are test-keys."
+    echo "Normally, you won't be able to pass device integrity."
+    echo "If you are using PIF by Chiteroman,"
+    echo "edit 'spoofSignature:false' to 'spoofSignature:true'"
+    echo "inside /data/adb/pif.json."
 fi
 
 echo ""
