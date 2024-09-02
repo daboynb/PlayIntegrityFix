@@ -155,7 +155,7 @@ if echo "$get_keys" | "$busybox_path" grep -q test; then
     
     # Check for the presence of migrate.sh and use the appropriate file path
     if [ -f /data/adb/modules/playintegrityfix/migrate.sh ]; then
-        $busybox_path sed -i 's/"spoofSignature": *"false"/"spoofSignature": "true"/g' /data/adb/modules/playintegrityfix/custom.pif.json
+        $busybox_path sed -i 's/"spoofSignature": *0/"spoofSignature": 1/g' /data/adb/modules/playintegrityfix/custom.pif.json
     else
         $busybox_path sed -i 's/"spoofSignature": *"false"/"spoofSignature": "true"/g' /data/adb/pif.json
     fi
