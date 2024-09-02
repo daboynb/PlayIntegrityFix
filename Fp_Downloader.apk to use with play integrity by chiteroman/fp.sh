@@ -151,9 +151,23 @@ fi
 if echo "$get_keys" | "$busybox_path" grep -q test; then
     echo ""
     echo "[-] Your keys are test-keys."
-    echo "Normally, you won't be able to pass device integrity."
-    echo "If you are using PIF by Chiteroman,"
-    echo "set 'SPOOF_PACKAGE_MANAGER:true' inside /data/adb/pif.json, then kill gms or reboot"
+    echo "Setting custom props"
+    
+    # Check for the presence of migrate.sh and use the appropriate file path
+    if [ -f /data/adb/modules/playintegrityfix/migrate.sh ]; then
+        $busybox_path sed -i 's/"spoofSignature": *"false"/"spoofSignature": "true"/g' /data/adb/modules/playintegrityfix/custom.pif.json
+    else
+        $busybox_path sed -i 's/"spoofSignature": *"false"/"spoofSignature": "true"/g' /data/adb/pif.json
+    fi
+
+    echo "[+] The 'spoofSignature' flag has been set to true"
+
+    # Kill GMS processes
+    package_names=("com.google.android.gms" "com.google.android.gms.unstable")
+
+    for package in "${package_names[@]}"; do
+        pkill -f "${package}" > /dev/null 2>&1
+    done
 fi
 
 echo ""
