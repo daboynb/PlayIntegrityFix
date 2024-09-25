@@ -169,7 +169,8 @@ if echo "$get_keys" | "$busybox_path" grep -q test; then
         pkill -f "${package}" > /dev/null 2>&1
     done
 fi
-
+echo ""
+echo "If you are using pif + ts and you're getting only device integrity on the osmosi's fork switch to chiteroman"
 echo ""
 echo "Remember, the wallet can take up to 24 hours to work again!"
 echo ""
