@@ -1,1 +1,1 @@
-V 10.7 : Bug fix for recent changes in pif.json.
+V 10.8 : Fix osmosis pif, since he uses different pif for strong

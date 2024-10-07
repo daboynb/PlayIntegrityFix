@@ -44,7 +44,6 @@ else
     exit 1
 fi
 
-
 # Check for zygisk if the user is using ksu
 if [ "$busybox_path" = "/data/adb/ap/bin/busybox" ]; then
   if [ -d "/data/adb/modules/zygisksu" ]; then
@@ -100,12 +99,23 @@ echo
 ###################################################################
 # Download pif.json
 echo "[+] Downloading the pif.json"
+
 if [ -f /data/adb/modules/playintegrityfix/migrate.sh ]; then
-    /system/bin/curl -L "https://raw.githubusercontent.com/daboynb/autojson/main/osmosis.json" -o /data/adb/modules/playintegrityfix/custom.pif.json > /dev/null 2>&1 || /system/bin/curl -L "https://raw.githubusercontent.com/daboynb/autojson/main/osmosis.json" -o /data/adb/modules/playintegrityfix/custom.pif.json
+    if [ -d /data/adb/modules/tricky_store ]; then
+        # Download osmosis.json 
+        /system/bin/curl -o /data/adb/modules/playintegrityfix/custom.pif.json https://raw.githubusercontent.com/daboynb/autojson/main/osmosis.json > /dev/null 2>&1 || \
+        /system/bin/curl -o /data/adb/modules/playintegrityfix/custom.pif.json https://raw.githubusercontent.com/daboynb/autojson/main/osmosis.json
+    else
+        # If tricky_store does not exist, download device_osmosis.json 
+        /system/bin/curl -o /data/adb/modules/playintegrityfix/custom.pif.json https://raw.githubusercontent.com/daboynb/autojson/main/device_osmosis.json > /dev/null 2>&1 || \
+        /system/bin/curl -o /data/adb/modules/playintegrityfix/custom.pif.json https://raw.githubusercontent.com/daboynb/autojson/main/device_osmosis.json
+    fi
 else
-    /system/bin/curl -L "https://raw.githubusercontent.com/daboynb/autojson/main/chiteroman.json" -o /data/adb/pif.json > /dev/null 2>&1 || /system/bin/curl -L "https://raw.githubusercontent.com/daboynb/autojson/main/chiteroman.json" -o /data/adb/pif.json
+    # Download chiteroman.json 
+    /system/bin/curl -L "https://raw.githubusercontent.com/daboynb/autojson/main/chiteroman.json" -o /data/adb/pif.json > /dev/null 2>&1 || \
+    /system/bin/curl -L "https://raw.githubusercontent.com/daboynb/autojson/main/chiteroman.json" -o /data/adb/pif.json
 fi
-echo 
+echo
 
 # Kill gms processes and wallet
 package_names=("com.google.android.gms" "com.google.android.gms.unstable" "com.google.android.apps.walletnfcrel")
@@ -148,6 +158,7 @@ if echo "$get_keys" | "$busybox_path" grep -q release; then
     echo ""
     echo "[+] Your keys are release-keys" 
 fi
+
 if echo "$get_keys" | "$busybox_path" grep -q test; then
     echo ""
     echo "[-] Your keys are test-keys."
@@ -169,6 +180,7 @@ if echo "$get_keys" | "$busybox_path" grep -q test; then
         pkill -f "${package}" > /dev/null 2>&1
     done
 fi
+
 echo ""
 echo "If you are using pif + ts and you're getting only device integrity on the osmosi's fork switch to chiteroman"
 echo ""
@@ -184,7 +196,6 @@ echo "Avoid putting things like Google Services Framework or Play Services on it
 echo ""
 echo "That can cause problems like not passing integrity."
 echo ""
-
 
 # Auto delete the script
 rm "$0" > /dev/null 2>/dev/null

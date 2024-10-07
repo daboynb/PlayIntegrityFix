@@ -1,6 +1,6 @@
 {
-    "version": "v10.7",
-    "versionCode": 10700,
+    "version": "v10.8",
+    "versionCode": 10800,
     "zipUrl": "https://github.com/daboynb/PlayIntegrityNEXT/releases/download/playcurl/playcurl.zip",
     "changelog": "https://raw.githubusercontent.com/daboynb/PlayIntegrityNEXT/main/changelog.md"
 }

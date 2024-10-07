@@ -40,13 +40,25 @@ check_network_reachable() {
 }
 
 check_pif_diff() {
-    # Check if pif.json exists
+# Check if /data/adb/pif.json exists
     if [ -e /data/adb/pif.json ]; then
         pif_file="/data/adb/pif.json"
+        
+        # Download chiteroman.json 
+        /system/bin/curl -o /data/adb/remote_pif.json https://raw.githubusercontent.com/daboynb/autojson/main/chiteroman.json > /dev/null 2>&1 || \
         /system/bin/curl -o /data/adb/remote_pif.json https://raw.githubusercontent.com/daboynb/autojson/main/chiteroman.json
     else
         pif_file="/data/adb/modules/playintegrityfix/custom.pif.json"
-        /system/bin/curl -o /data/adb/remote_pif.json https://raw.githubusercontent.com/daboynb/autojson/main/osmosis.json
+        
+        # If tricky_store exists, download osmosis.json
+        if [ -d /data/adb/modules/tricky_store ]; then
+            /system/bin/curl -o /data/adb/remote_pif.json https://raw.githubusercontent.com/daboynb/autojson/main/osmosis.json > /dev/null 2>&1 || \
+            /system/bin/curl -o /data/adb/remote_pif.json https://raw.githubusercontent.com/daboynb/autojson/main/osmosis.json
+        else
+            # If tricky_store does not exist, download device_osmosis.json 
+            /system/bin/curl -o /data/adb/remote_pif.json https://raw.githubusercontent.com/daboynb/autojson/main/device_osmosis.json > /dev/null 2>&1 || \
+            /system/bin/curl -o /data/adb/remote_pif.json https://raw.githubusercontent.com/daboynb/autojson/main/device_osmosis.json
+        fi
     fi
 
     # Check the diff
