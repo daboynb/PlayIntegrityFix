@@ -1,1 +1,1 @@
-V 10.8 : Fix osmosis pif, since he uses different pif for strong
+V 10.8 : Fix service.sh bug.
