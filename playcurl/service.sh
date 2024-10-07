@@ -41,7 +41,7 @@ while true; do
     if [ -f /data/adb/modules/playintegrityfix/migrate.sh ]; then
         if [ -d /data/adb/modules/tricky_store ]; then
             # Download osmosis.json
-            if /system/bin/curl -o /data/adb/modules/playintegrityfix/custom.pif.json https://raw.githubusercontent.com/daboynb/autojson/main/osmosis.json > /dev/null 2> "$log"; then
+            if /system/bin/curl -o /data/adb/modules/playintegrityfix/custom.pif.json https://raw.githubusercontent.com/daboynb/autojson/main/osmosis.json; then
                 echo "[+] Successfully downloaded osmosis.json."
             else
                 echo "[-] Failed to download osmosis.json."
@@ -49,7 +49,7 @@ while true; do
             fi
         else
             # If tricky_store does not exist, download device_osmosis.json
-            if /system/bin/curl -o /data/adb/modules/playintegrityfix/custom.pif.json https://raw.githubusercontent.com/daboynb/autojson/main/device_osmosis.json > /dev/null 2> "$log"; then
+            if /system/bin/curl -o /data/adb/modules/playintegrityfix/custom.pif.json https://raw.githubusercontent.com/daboynb/autojson/main/device_osmosis.json; then
                 echo "[+] Successfully downloaded device_osmosis.json."
             else
                 echo "[-] Failed to download device_osmosis.json."
@@ -58,7 +58,7 @@ while true; do
         fi
     else
         # Download chiteroman.json
-        if /system/bin/curl -L "https://raw.githubusercontent.com/daboynb/autojson/main/chiteroman.json" -o /data/adb/pif.json > /dev/null 2> "$log"; then
+        if /system/bin/curl -L "https://raw.githubusercontent.com/daboynb/autojson/main/chiteroman.json" -o /data/adb/pif.json; then
             echo "[+] Successfully downloaded chiteroman.json."
         else
             echo "[-] Failed to download chiteroman.json."
@@ -92,7 +92,7 @@ while true; do
     sleep 3
 
     # Check interval
-    filepath="/data/adb/modules/playcurlNEXT/seconds.txt"
+    filepath="/data/adb/modules/playcurl/seconds.txt"
     time_interval=$(cat "$filepath")
 
     sleep "$time_interval" 
