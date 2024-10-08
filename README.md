@@ -15,6 +15,4 @@ Telegram :
 
 CHANNEL https://t.me/PifNEXT
 
-PM http://t.me/furdiburd (helper)
-
 GROUP https://t.me/playfixnext
