@@ -1,3 +1,12 @@
+<div style="border: 5px solid #f39c12; background-color: #f9e79f; color: #c0392b; padding: 40px; text-align: center;">
+  <h1 style="color: #d35400; font-size: 72px;">⚠️ WARNING ⚠️</h1>
+  <h1 style="font-size: 80px; color: #c0392b;">This project is archived!</h1>
+  <h1 style="font-size: 64px;">The new version is available here:</h1>
+  <h1><a href="https://github.com/daboynb/playcurlNEXT" target="_blank" style="color: #e74c3c; text-decoration: none;">https://github.com/daboynb/playcurlNEXT</a></h1>
+</div>
+
+<details>
+  <summary></summary>
 If you wanna help me
 
 <a href="https://www.buymeacoffee.com/daboynb" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
@@ -16,3 +25,4 @@ Telegram :
 CHANNEL https://t.me/PifNEXT
 
 GROUP https://t.me/playfixnext
+</details>
